@@ -1,112 +1,849 @@
 @import 'tailwindcss';
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* ==========================================================================
+   Still Waters Wellbeing — "Lake glass and river stones"
+   Light: "morning sand" | Dark: "lake at dusk"
+   ========================================================================== */
+
 :root {
-  --bg: #f7f8fa;
-  --surface: #ffffff;
-  --text: #172033;
-  --muted: #526078;
-  --accent: #2457a7;
-  --accent-ink: #2457a7;
-  --on-accent: #ffffff;
-  --line: #c7cfdb;
-  --focus: #2457a7;
-  --map-filter: none;
+  --bg: #F3EDE2;
+  --surface: #FAF6EF;
+  --sand-deep: #E4D8C3;
+  --water: #C6D3CA;
+  --sage: #9AAE97;
+  --ink: #26302B;
+  --muted: #5C6660;
+  --primary: #4A6150;
+  --primary-hover: #3C5142;
+  --primary-ink: #3E5444;
+  --on-primary: #FFFFFF;
+  --clay: #8A5A3E;
+  --line: rgba(38, 48, 43, 0.16);
+  --line-solid: #CFC6B7;
+  --focus: #3C5142;
+
+  /* Crisis band: deep calm ink in light mode, never alarm-red */
+  --crisis-bg: #26302B;
+  --crisis-fg: #F3EDE2;
+  --crisis-muted: #C6D3CA;
+  --crisis-accent: #E2B392;
+  --crisis-line: rgba(243, 237, 226, 0.22);
+
+  /* Artwork tokens — morning light */
+  --sky-top: #F6F1E8;
+  --sky-horizon: #EAE4D9;
+  --range-far: #CCD5D0;
+  --range-near: #B5C4BC;
+  --water-deep: #B1C3B8;
+  --water-sheen: #E8EFEA;
+  --jetty: #7A6B5C;
+  --reed: #4C5D52;
+  --lamp-glow: #E8C07F;
+  --lamp-core: #FFF5DD;
+  --lamp-halo-opacity: 0.26;
+  --lamp-water-opacity: 0.22;
+  --pebble-basalt: #535C58;
+  --pebble-river: #8A958E;
+  --pebble-sandstone: #BFA98E;
+  --pebble-sage: #7E967E;
+  --pebble-ink: #FAF6EF;
+  --raked-stroke: rgba(92, 102, 96, 0.22);
+  --grain-opacity: 0.036;
+  --dawn-glow: rgba(232, 192, 127, 0.34);
+  --reflect-opacity: 0.34;
+
+  /* Status tones (WCAG AA compliant) */
+  --status-open-bg: #DCE6DE;
+  --status-open-ink: #2E4535;
+  --status-wait-bg: #EDE1CE;
+  --status-wait-ink: #6D452D;
+  --status-closed-bg: #E5E1D9;
+  --status-closed-ink: #505953;
+
   color-scheme: light;
 }
+
 @media (prefers-color-scheme: dark) {
- :root:not(.light) {
-  --bg: #141923;
-  --surface: #1e2633;
-  --text: #f1f5fa;
-  --muted: #b5c2d5;
-  --accent: #2457a7;
-  --accent-ink: #a9cbff;
-  --on-accent: #ffffff;
-  --line: #61708a;
-  --focus: #a9cbff;
-  --map-filter: grayscale(.4) brightness(.8);
-  color-scheme: dark;
- }
+  :root:not(.light) {
+    --bg: #18201C;
+    --surface: #212B26;
+    --sand-deep: #2C3631;
+    --water: #2E3F3A;
+    --sage: #7F9A84;
+    --ink: #ECE5D8;
+    --muted: #A9B3AC;
+    --primary: #4F6B57;
+    --primary-hover: #425B4A;
+    --primary-ink: #A9C4AE;
+    --on-primary: #FFFFFF;
+    --clay: #C9906E;
+    --line: rgba(236, 229, 216, 0.16);
+    --line-solid: #3D4A43;
+    --focus: #A9C4AE;
+
+    /* Crisis band: quiet deeper dusk water in dark mode */
+    --crisis-bg: #111714;
+    --crisis-fg: #ECE5D8;
+    --crisis-muted: #B0BCB4;
+    --crisis-accent: #DEA581;
+    --crisis-line: rgba(236, 229, 216, 0.18);
+
+    /* Artwork tokens — lake at dusk */
+    --sky-top: #182124;
+    --sky-horizon: #223035;
+    --range-far: #26363D;
+    --range-near: #1F2E34;
+    --water-deep: #23332F;
+    --water-sheen: #567069;
+    --jetty: #4E4942;
+    --reed: #7A9182;
+    --lamp-glow: #F2C274;
+    --lamp-core: #FFF2CF;
+    --lamp-halo-opacity: 0.72;
+    --lamp-water-opacity: 0.62;
+    --pebble-basalt: #444E4A;
+    --pebble-river: #586660;
+    --pebble-sandstone: #7A6856;
+    --pebble-sage: #516856;
+    --pebble-ink: #ECE5D8;
+    --raked-stroke: rgba(236, 229, 216, 0.09);
+    --grain-opacity: 0.032;
+    --dawn-glow: rgba(242, 194, 116, 0.12);
+    --reflect-opacity: 0.28;
+
+    --status-open-bg: #293D30;
+    --status-open-ink: #BCE0C3;
+    --status-wait-bg: #3D3026;
+    --status-wait-ink: #E5B99A;
+    --status-closed-bg: #2C3430;
+    --status-closed-ink: #B7C1BA;
+
+    color-scheme: dark;
+  }
 }
+
 :root.dark {
-  --bg: #141923;
-  --surface: #1e2633;
-  --text: #f1f5fa;
-  --muted: #b5c2d5;
-  --accent: #2457a7;
-  --accent-ink: #a9cbff;
-  --on-accent: #ffffff;
-  --line: #61708a;
-  --focus: #a9cbff;
-  --map-filter: grayscale(.4) brightness(.8);
+  --bg: #18201C;
+  --surface: #212B26;
+  --sand-deep: #2C3631;
+  --water: #2E3F3A;
+  --sage: #7F9A84;
+  --ink: #ECE5D8;
+  --muted: #A9B3AC;
+  --primary: #4F6B57;
+  --primary-hover: #425B4A;
+  --primary-ink: #A9C4AE;
+  --on-primary: #FFFFFF;
+  --clay: #C9906E;
+  --line: rgba(236, 229, 216, 0.16);
+  --line-solid: #3D4A43;
+  --focus: #A9C4AE;
+
+  --crisis-bg: #111714;
+  --crisis-fg: #ECE5D8;
+  --crisis-muted: #B0BCB4;
+  --crisis-accent: #DEA581;
+  --crisis-line: rgba(236, 229, 216, 0.18);
+
+  --sky-top: #182124;
+  --sky-horizon: #223035;
+  --range-far: #26363D;
+  --range-near: #1F2E34;
+  --water-deep: #23332F;
+  --water-sheen: #567069;
+  --jetty: #4E4942;
+  --reed: #7A9182;
+  --lamp-glow: #F2C274;
+  --lamp-core: #FFF2CF;
+  --lamp-halo-opacity: 0.72;
+  --lamp-water-opacity: 0.62;
+  --pebble-basalt: #444E4A;
+  --pebble-river: #586660;
+  --pebble-sandstone: #7A6856;
+  --pebble-sage: #516856;
+  --pebble-ink: #ECE5D8;
+  --raked-stroke: rgba(236, 229, 216, 0.09);
+  --grain-opacity: 0.032;
+    --dawn-glow: rgba(242, 194, 116, 0.12);
+    --reflect-opacity: 0.28;
+
+  --status-open-bg: #293D30;
+  --status-open-ink: #BCE0C3;
+  --status-wait-bg: #3D3026;
+  --status-wait-ink: #E5B99A;
+  --status-closed-bg: #2C3430;
+  --status-closed-ink: #B7C1BA;
+
   color-scheme: dark;
 }
 
 @theme {
   --color-*: initial;
-  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --radius-ui: .375rem;
+  --font-display: 'Newsreader Variable', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Mulish Variable', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --radius-ui: 0.5rem;
+  --radius-pebble: 1.5rem;
 }
+
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
-  --color-ink: var(--text);
+  --color-sand-deep: var(--sand-deep);
+  --color-water: var(--water);
+  --color-sage: var(--sage);
+  --color-ink: var(--ink);
   --color-muted: var(--muted);
-  --color-accent: var(--accent);
-  --color-accent-ink: var(--accent-ink);
-  --color-on-accent: var(--on-accent);
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-ink: var(--primary-ink);
+  --color-on-primary: var(--on-primary);
+  --color-clay: var(--clay);
   --color-line: var(--line);
+  --color-line-solid: var(--line-solid);
+  --color-crisis-bg: var(--crisis-bg);
+  --color-crisis-fg: var(--crisis-fg);
+  --color-crisis-muted: var(--crisis-muted);
+  --color-crisis-accent: var(--crisis-accent);
+  --color-crisis-line: var(--crisis-line);
 }
+
 :root {
-  --measure: 42rem;
+  --measure: 40rem;
   --jamstacks-font-family: var(--font-sans);
-  --jamstacks-color-text: var(--text);
+  --jamstacks-color-text: var(--ink);
   --jamstacks-color-background: var(--surface);
-  --jamstacks-color-primary: var(--accent);
-  --jamstacks-color-border: var(--line);
+  --jamstacks-color-primary: var(--primary);
+  --jamstacks-color-border: var(--line-solid);
   --jamstacks-color-muted: var(--muted);
-  --jamstacks-color-link: var(--accent-ink);
+  --jamstacks-color-link: var(--primary-ink);
   --jamstacks-border-radius: var(--radius-ui);
   --jamstacks-control-height: 2.75rem;
   --jamstacks-spacing: 1rem;
-  --jamstacks-form-max-width: 40rem;
-  --jamstacks-toggle-color: var(--text);
-  --jamstacks-toggle-dark-color: var(--text);
-  --jamstacks-toggle-border: var(--line);
+  --jamstacks-form-max-width: 42rem;
+  --jamstacks-toggle-color: var(--ink);
+  --jamstacks-toggle-dark-color: var(--ink);
+  --jamstacks-toggle-border: var(--line-solid);
   --jamstacks-toggle-background: var(--surface);
   --jamstacks-toggle-dark-background: var(--surface);
   --jamstacks-toggle-focus-color: var(--focus);
 }
+
 @layer base {
-  html { background: var(--bg); color: var(--text); font-family: var(--font-sans); scroll-padding-top: 1.5rem; }
-  body { margin: 0; line-height: 1.6; }
-  main { min-height: 65vh; }
-  a { text-underline-offset: .2em; }
-  a:hover { text-decoration: underline; }
-  button { cursor: pointer; }
-  :focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
-  [aria-current="page"] { text-decoration: underline; }
+  html {
+    background-color: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 100%;
+    scroll-padding-top: 5.5rem;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    background-color: var(--bg);
+    color: var(--ink);
+    line-height: 1.65;
+    position: relative;
+    overflow-x: clip;
+  }
+
+  /* Subtle paper grain over the sand ground (<= 4% opacity) */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 40;
+    opacity: var(--grain-opacity);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  }
+
+  main {
+    min-height: 65vh;
+  }
+
+  h1, h2, h3, .font-display {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-weight: 380;
+    letter-spacing: -0.015em;
+  }
+
+  em, i {
+    font-style: italic;
+  }
+
+  a {
+    text-underline-offset: 0.24em;
+    text-decoration-thickness: 1px;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 2.5px solid var(--focus);
+    outline-offset: 3px;
+  }
+
+  [aria-current='page'] {
+    text-decoration: underline;
+    text-underline-offset: 0.35em;
+    text-decoration-thickness: 1.5px;
+  }
 }
-@utility wrap { width: min(100% - 2rem, 72rem); margin-inline: auto; }
+
+@utility wrap {
+  width: min(100% - 2.25rem, 76rem);
+  margin-inline: auto;
+}
+
+@utility wrap-narrow {
+  width: min(100% - 2.25rem, 54rem);
+  margin-inline: auto;
+}
+
 @layer components {
-  .button { display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem; padding: .6rem 1.2rem; border: 1px solid var(--accent); border-radius: var(--radius-ui); background: var(--accent); color: var(--on-accent); font-weight: 600; text-decoration: none; }
-  .button:hover { text-decoration: underline; }
-  .button-quiet { background: var(--surface); color: var(--accent-ink); border-color: var(--line); }
-  .text-link { color: var(--accent-ink); text-decoration: underline; }
-  .eyebrow { font-size: .8rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
-  .skip-link { position: absolute; left: 1rem; top: -8rem; padding: .75rem; z-index: 200; background: var(--surface); }
-  .skip-link:focus { top: 1rem; }
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0.65rem 1.35rem;
+    border: 1px solid var(--primary);
+    border-radius: 999px;
+    background-color: var(--primary);
+    color: var(--on-primary);
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+    transition: background-color 180ms ease, border-color 180ms ease;
+  }
+
+  .button:hover {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+    text-decoration: none;
+  }
+
+  .button-lg {
+    min-height: 3.25rem;
+    padding: 0.85rem 1.75rem;
+    font-size: 1rem;
+  }
+
+  .button-quiet {
+    background-color: var(--surface);
+    color: var(--primary-ink);
+    border-color: var(--line-solid);
+  }
+
+  .button-quiet:hover {
+    background-color: var(--sand-deep);
+    border-color: var(--primary-ink);
+  }
+
+  .button-water {
+    background-color: transparent;
+    color: var(--ink);
+    border-color: var(--ink);
+  }
+
+  .button-water:hover {
+    background-color: color-mix(in srgb, var(--ink) 8%, transparent);
+  }
+
+  .text-link {
+    color: var(--primary-ink);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--primary-ink) 55%, transparent);
+    transition: text-decoration-color 160ms ease, color 160ms ease;
+  }
+
+  .text-link:hover {
+    text-decoration-color: currentColor;
+  }
+
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .skip-link {
+    position: absolute;
+    inset-inline-start: 1rem;
+    inset-block-start: -8rem;
+    padding: 0.75rem 1rem;
+    z-index: 200;
+    background: var(--surface);
+    color: var(--ink);
+    border: 1px solid var(--line-solid);
+    border-radius: var(--radius-ui);
+  }
+
+  .skip-link:focus {
+    inset-block-start: 1rem;
+  }
+
+  /* Raked sand band — fine parallel wavy horizontal lines */
+  .band-raked-sand {
+    background-color: var(--sand-deep);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='28' viewBox='0 0 240 28'%3E%3Cpath d='M0 7c40-3.2 80 3.2 120 0s80 3.2 120 0M0 16.5c40-2.8 80 2.8 120 0s80 2.8 120 0M0 25.5c40-2.5 80 2.5 120 0s80 2.5 120 0' fill='none' stroke='%235C6660' stroke-width='0.9' opacity='0.18'/%3E%3C/svg%3E");
+    background-size: 240px 28px;
+  }
+
+  /* Ripple ring bullets */
+  .ripple-list {
+    list-style: none;
+    padding-inline-start: 0;
+    margin: 0;
+  }
+
+  .ripple-list > li {
+    position: relative;
+    padding-inline-start: 1.85rem;
+  }
+
+  .ripple-list > li::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-start: 0.48em;
+    inline-size: 1.15rem;
+    block-size: 0.72rem;
+    background-color: var(--sage);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 14'%3E%3Cellipse cx='11' cy='7' rx='9.5' ry='5.2' fill='none' stroke='black' stroke-width='1.2'/%3E%3Cellipse cx='11' cy='7' rx='5.2' ry='2.7' fill='none' stroke='black' stroke-width='1.2'/%3E%3Ccircle cx='11' cy='7' r='1.7' fill='black'/%3E%3C/svg%3E");
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+  }
+
+  /* Status ribbons */
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+
+  .status-pill[data-status='open'] {
+    background-color: var(--status-open-bg);
+    color: var(--status-open-ink);
+  }
+
+  .status-pill[data-status='waitlist'] {
+    background-color: var(--status-wait-bg);
+    color: var(--status-wait-ink);
+  }
+
+  .status-pill[data-status='closed'] {
+    background-color: var(--status-closed-bg);
+    color: var(--status-closed-ink);
+  }
+
+  .status-dot {
+    inline-size: 0.45rem;
+    block-size: 0.45rem;
+    border-radius: 999px;
+    background-color: currentColor;
+  }
 }
-.map iframe { width: 100%; min-height: 20rem; border: 0; filter: var(--map-filter); }
-.enquiry__host { display: block; }
-.enquiry__status { margin-top: 1rem; color: var(--muted); }
-.enquiry[data-state="present"] > .enquiry__status { display: none; }
+
+/* Dark mode raked sand stroke adjustment */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) .band-raked-sand {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='28' viewBox='0 0 240 28'%3E%3Cpath d='M0 7c40-3.2 80 3.2 120 0s80 3.2 120 0M0 16.5c40-2.8 80 2.8 120 0s80 2.8 120 0M0 25.5c40-2.5 80 2.5 120 0s80 2.5 120 0' fill='none' stroke='%23ECE5D8' stroke-width='0.9' opacity='0.1'/%3E%3C/svg%3E");
+  }
+}
+:root.dark .band-raked-sand {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='28' viewBox='0 0 240 28'%3E%3Cpath d='M0 7c40-3.2 80 3.2 120 0s80 3.2 120 0M0 16.5c40-2.8 80 2.8 120 0s80 2.8 120 0M0 25.5c40-2.5 80 2.5 120 0s80 2.5 120 0' fill='none' stroke='%23ECE5D8' stroke-width='0.9' opacity='0.1'/%3E%3C/svg%3E");
+}
+
+/* ==========================================================================
+   Site Header & Responsive Popover Navigation (modern-web-guidance: navbar)
+   ========================================================================== */
+
+.site-header {
+  position: relative;
+  z-index: 30;
+  background-color: var(--bg);
+}
+
+.site-menu-trigger {
+  anchor-name: --site-menu-trigger;
+}
+
+.site-nav-popover[popover] {
+  position: fixed;
+  inset: auto;
+  inset-block-start: 4.75rem;
+  inset-block-start: anchor(--site-menu-trigger bottom);
+  inset-inline-end: 1.125rem;
+  inline-size: min(86dvw, 19rem);
+  max-block-size: calc(100dvh - 6rem);
+  margin: 0.5rem 0 0;
+  padding: 1.25rem;
+  border: 1px solid var(--line-solid);
+  border-radius: var(--radius-ui);
+  background-color: var(--surface);
+  color: var(--ink);
+  overflow: auto;
+}
+
+.site-nav-popover[popover]:is(:popover-open, .\:popover-open) {
+  display: block;
+}
+
+.site-nav-popover[popover]::backdrop {
+  background-color: color-mix(in srgb, var(--ink) 20%, transparent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .site-nav-popover[popover] {
+    transition: opacity 180ms ease, translate 180ms ease, display 180ms ease, overlay 180ms ease;
+    transition-behavior: allow-discrete;
+    opacity: 0;
+    translate: 0 -0.35rem;
+  }
+
+  .site-nav-popover[popover]:is(:popover-open, .\:popover-open) {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  @starting-style {
+    .site-nav-popover[popover]:is(:popover-open, .\:popover-open) {
+      opacity: 0;
+      translate: 0 -0.35rem;
+    }
+  }
+}
+
+/* ==========================================================================
+   Responsive Ruled Tide Table (modern-web-guidance: responsive-table)
+   ========================================================================== */
+
+.tide-table-wrap {
+  container-type: inline-size;
+  overflow-x: auto;
+  max-inline-size: 100%;
+}
+
+.tide-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: start;
+}
+
+.tide-table th,
+.tide-table td {
+  text-align: start;
+  padding-block: 1.15rem;
+  padding-inline: 0.75rem;
+  border-block-end: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.tide-table thead th {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-block-end: 1.5px solid var(--line-solid);
+  padding-block: 0.85rem;
+}
+
+.tide-table th:first-child,
+.tide-table td:first-child {
+  padding-inline-start: 0;
+}
+
+.tide-table th:last-child,
+.tide-table td:last-child {
+  padding-inline-end: 0;
+}
+
+@container (width < 42rem) {
+  .tide-table,
+  .tide-table thead,
+  .tide-table tbody,
+  .tide-table tr,
+  .tide-table th,
+  .tide-table td {
+    display: block;
+  }
+
+  .tide-table thead {
+    display: none;
+  }
+
+  .tide-table tbody tr {
+    padding-block: 1.2rem;
+    border-block-end: 1px solid var(--line-solid);
+  }
+
+  .tide-table tbody th,
+  .tide-table tbody td {
+    border: 0;
+    padding: 0.25rem 0;
+  }
+
+  .tide-table tbody th {
+    padding-block-end: 0.45rem;
+  }
+
+  .tide-table tbody td {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    font-size: 0.9375rem;
+  }
+
+  .tide-table tbody td::before {
+    content: attr(data-label);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    flex-shrink: 0;
+    padding-block-start: 0.18rem;
+  }
+}
+
+/* ==========================================================================
+   Settle Ripple Pacer & Calm Motion (modern-web-guidance: motion)
+   ========================================================================== */
+
+.settle-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .settle-ring {
+    transition: transform 600ms ease, opacity 600ms ease;
+  }
+
+  .settle-ripple[data-phase='inhale'] .settle-ring {
+    transition: transform 4000ms cubic-bezier(0.37, 0, 0.63, 1), opacity 4000ms ease-in-out;
+  }
+
+  .settle-ripple[data-phase='exhale'] .settle-ring {
+    transition: transform 6000ms cubic-bezier(0.37, 0, 0.63, 1), opacity 6000ms ease-in-out;
+  }
+
+  .settle-ripple[data-phase='inhale'] .settle-ring--1 { transform: scale(1.16); opacity: 0.92; }
+  .settle-ripple[data-phase='inhale'] .settle-ring--2 { transform: scale(1.22); opacity: 0.80; }
+  .settle-ripple[data-phase='inhale'] .settle-ring--3 { transform: scale(1.26); opacity: 0.66; }
+  .settle-ripple[data-phase='inhale'] .settle-ring--4 { transform: scale(1.28); opacity: 0.50; }
+  .settle-ripple[data-phase='inhale'] .settle-ring--5 { transform: scale(1.30); opacity: 0.36; }
+  .settle-ripple[data-phase='inhale'] .settle-ring--6 { transform: scale(1.32); opacity: 0.24; }
+
+  .settle-ripple[data-phase='exhale'] .settle-ring--1 { transform: scale(0.96); opacity: 0.72; }
+  .settle-ripple[data-phase='exhale'] .settle-ring--2 { transform: scale(0.95); opacity: 0.56; }
+  .settle-ripple[data-phase='exhale'] .settle-ring--3 { transform: scale(0.94); opacity: 0.42; }
+  .settle-ripple[data-phase='exhale'] .settle-ring--4 { transform: scale(0.93); opacity: 0.30; }
+  .settle-ripple[data-phase='exhale'] .settle-ring--5 { transform: scale(0.92); opacity: 0.20; }
+  .settle-ripple[data-phase='exhale'] .settle-ring--6 { transform: scale(0.91); opacity: 0.12; }
+
+  /* Pebbles lift gently on hover */
+  .pebble-lift {
+    transition: translate 260ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .pebble-lift:hover {
+    translate: 0 -4px;
+  }
+
+  /* Shorelines draw themselves in as they enter the view — progressive enhancement */
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    @keyframes draw-in {
+      from { stroke-dashoffset: 1; }
+      to { stroke-dashoffset: 0; }
+    }
+
+    .draw-line {
+      stroke-dasharray: 1;
+      animation: draw-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 40%;
+    }
+  }
+
+  /* The one orchestrated moment: the hero horizon settles on first load */
+  @keyframes horizon-settle {
+    from { opacity: 0; transform: scaleY(-1) translateY(0.35em); }
+  }
+  @keyframes shimmer {
+    to { mask-position: 0 0, 0 18px; }
+  }
+  .hero-horizon .reflection {
+    animation: horizon-settle 2.4s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both, shimmer 7s linear infinite;
+  }
+  .reflection {
+    animation: shimmer 9s linear infinite;
+  }
+}
+
+/* Under reduced motion: Settle Ripple does NOT scale — changes opacity step-wise instead */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .settle-ring {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .settle-ripple[data-phase='inhale'] .settle-ring--1 { opacity: 0.96; }
+  .settle-ripple[data-phase='inhale'] .settle-ring--2 { opacity: 0.86; }
+  .settle-ripple[data-phase='inhale'] .settle-ring--3 { opacity: 0.72; }
+  .settle-ripple[data-phase='inhale'] .settle-ring--4 { opacity: 0.56; }
+  .settle-ripple[data-phase='inhale'] .settle-ring--5 { opacity: 0.42; }
+  .settle-ripple[data-phase='inhale'] .settle-ring--6 { opacity: 0.30; }
+
+  .settle-ripple[data-phase='exhale'] .settle-ring--1 { opacity: 0.55; }
+  .settle-ripple[data-phase='exhale'] .settle-ring--2 { opacity: 0.42; }
+  .settle-ripple[data-phase='exhale'] .settle-ring--3 { opacity: 0.30; }
+  .settle-ripple[data-phase='exhale'] .settle-ring--4 { opacity: 0.22; }
+  .settle-ripple[data-phase='exhale'] .settle-ring--5 { opacity: 0.14; }
+  .settle-ripple[data-phase='exhale'] .settle-ring--6 { opacity: 0.08; }
 }
+
+/* ==========================================================================
+   Lake glass: sky, horizon, water and reflections
+   ========================================================================== */
+
+@layer components {
+  /* First-light sky: page sand at the top warming toward a low dawn (or dusk lamp) glow */
+  .lake-sky {
+    background-color: var(--bg);
+    background-image:
+      radial-gradient(60% 70% at 28% 100%, var(--dawn-glow), transparent 70%),
+      linear-gradient(to bottom, var(--bg) 0%, var(--sky-horizon) 100%);
+  }
+
+  /* Mirror-flat water: lighter at the horizon, deepening with distance from it */
+  .lake-water {
+    background-color: var(--water);
+    background-image:
+      repeating-linear-gradient(to bottom, transparent 0 46px, color-mix(in srgb, var(--water-sheen) 30%, transparent) 46px 47px, transparent 47px 83px),
+      linear-gradient(to bottom, color-mix(in srgb, var(--water) 72%, var(--sky-horizon)) 0%, var(--water) 38%, var(--water-deep) 100%);
+  }
+
+  .lake-water-plain {
+    background-color: var(--water);
+    background-image: linear-gradient(to bottom, color-mix(in srgb, var(--water) 72%, var(--sky-horizon)) 0%, var(--water) 30%, var(--water-deep) 100%);
+  }
+
+  /* The horizon itself: a single fine waterline */
+  .horizon-line {
+    position: relative;
+  }
+  .horizon-line::before {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    inset-block-start: 0;
+    block-size: 1px;
+    background: linear-gradient(to right, transparent, color-mix(in srgb, var(--ink) 34%, transparent) 12%, color-mix(in srgb, var(--ink) 34%, transparent) 88%, transparent);
+  }
+
+  /* Reflection: flipped, wobbled and fading with depth */
+  .reflection-clip {
+    overflow: hidden;
+    pointer-events: none;
+    user-select: none;
+  }
+  .reflection {
+    transform: scaleY(-1);
+    color: var(--ink);
+    opacity: var(--reflect-opacity);
+    filter: url(#lake-glass);
+    mask-image:
+      linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0.6) 30%, transparent 78%),
+      repeating-linear-gradient(to bottom, #000 0 7px, rgba(0, 0, 0, 0.72) 7px 11px, #000 11px 18px);
+    mask-composite: intersect;
+    mask-size: 100% 100%, 100% 18px;
+    mask-position: 0 0, 0 0;
+  }
+
+  /* Strip of water the "How to begin" stones cross */
+  .water-strip {
+    background-color: var(--water);
+    background-image: repeating-linear-gradient(to bottom, transparent 0 13px, color-mix(in srgb, var(--water-sheen) 55%, transparent) 13px 14px, transparent 14px 31px);
+  }
+
+  /* Night water for the crisis band: lamplight column on deep water */
+  .night-water {
+    background-color: var(--crisis-bg);
+    background-image:
+      radial-gradient(18rem 26rem at var(--lamp-x, 14%) 30%, color-mix(in srgb, var(--lamp-glow) 16%, transparent), transparent 70%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reflection,
+  .hero-horizon .reflection {
+    animation: none !important;
+  }
+}
+
+/* ==========================================================================
+   Hosted Jamstacks Form States & Print Styles
+   ========================================================================== */
+
+.enquiry__host {
+  display: block;
+}
+
+.enquiry__status {
+  margin-top: 1rem;
+  color: var(--muted);
+}
+
+.enquiry[data-state='present'] > .enquiry__status {
+  display: none;
+}
+
 @media print {
-  nav, .skip-link, .enquiry, button { display: none !important; }
-  html { background: white; color: black; }
-  a { color: inherit; }
+  body::before,
+  nav,
+  .skip-link,
+  .enquiry,
+  .no-print,
+  .settle-ripple,
+  .art-hide-print,
+  button {
+    display: none !important;
+  }
+
+  html,
+  body,
+  section,
+  header,
+  footer {
+    background: #ffffff !important;
+    background-image: none !important;
+    color: #111111 !important;
+  }
+
+  a {
+    color: #111111 !important;
+    text-decoration: underline !important;
+  }
 }

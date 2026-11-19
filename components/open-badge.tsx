@@ -1,16 +1,48 @@
-"use client";
+'use client';
+
 import { useEffect, useState } from 'react';
-import { openingLabel, type OpeningHours } from '../lib/hours';
+import { receptionOpeningLabel, resolveOpeningState, type OpeningHours } from '../lib/hours';
 import { site } from '../lib/site';
 
-/** Optional. Neutral static output; browser refreshes in the business zone every minute. */
-export function OpenBadge({ hours }: { hours: readonly OpeningHours[] }) {
-  const [label, setLabel] = useState('See opening hours');
+/**
+ * Browser-only reception status pill computed in the configured IANA zone (Australia/Sydney)
+ * and refreshed every minute. Renders nothing in static/no-JS HTML so only the neutral hours table appears.
+ */
+export function OpenBadge({
+  hours,
+  timeZone = site.timeZone || 'Australia/Sydney',
+  className = '',
+}: {
+  hours: readonly OpeningHours[];
+  timeZone?: string;
+  className?: string;
+}) {
+  const [state, setState] = useState<{ label: string; open: boolean } | null>(null);
+
   useEffect(() => {
-    const update = () => setLabel(openingLabel(hours, site.timeZone));
+    const update = () => {
+      const label = receptionOpeningLabel(hours, timeZone);
+      if (!label) {
+        setState(null);
+        return;
+      }
+      const resolved = resolveOpeningState(hours, timeZone);
+      setState({ label, open: resolved.status === 'open' });
+    };
     update();
     const timer = setInterval(update, 60_000);
     return () => clearInterval(timer);
-  }, [hours]);
-  return <span>{label}</span>;
+  }, [hours, timeZone]);
+
+  if (!state) return null;
+
+  return (
+    <span
+      className={`status-pill ${className}`}
+      data-status={state.open ? 'open' : 'closed'}
+    >
+      <span className="status-dot" aria-hidden="true" />
+      <span>{state.label}</span>
+    </span>
+  );
 }

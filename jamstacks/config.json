@@ -1,0 +1,19 @@
+{
+  "name": "Still Waters Wellbeing",
+  "description": "Private counselling and psychology on the Kingston Foreshore, Canberra. Calm rooms, clear fees and Medicare rebates, and clinicians you can read about before you call.",
+  "tech": "next",
+  "type": "psychology",
+  "style": "calm",
+  "internal": false,
+  "components": [
+    "support-form"
+  ],
+  "configFile": "site.config.json",
+  "screenshots": {
+    "light": "jamstacks/home-light.jpg",
+    "dark": "jamstacks/home-dark.jpg",
+    "theme": {
+      "strategy": "media"
+    }
+  }
+}

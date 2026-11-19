@@ -1,7 +1,8 @@
 {
-  "name": "Jamstacks starter",
-  "description": "A neutral Next.js foundation for Jamstacks websites.",
-  "domain": "",
+  "name": "Still Waters Wellbeing",
+  "description": "Private counselling and psychology on the Kingston Foreshore, Canberra. Calm rooms, clear fees and Medicare rebates, and clinicians you can read about before you call.",
+  "domain": "next-psychology-calm.jamstacks.net",
+  "timeZone": "Australia/Sydney",
   "jamstacks": {
     "siteId": "",
     "cdnUrl": "https://cdn.jamstacks.net"

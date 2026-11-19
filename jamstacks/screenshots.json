@@ -1,0 +1,22 @@
+{
+  "templateId": "next-psychology-calm",
+  "viewport": {
+    "width": 1440,
+    "height": 900
+  },
+  "fullPage": false,
+  "captures": [
+    {
+      "mode": "light",
+      "sha256": "8c2b66d39df800a87b5d787ba619cad6fbe19b0a4366cae2110715676bb622a4",
+      "file": "jamstacks/home-light.jpg",
+      "bytes": 100943
+    },
+    {
+      "mode": "dark",
+      "sha256": "154fc1d63b15fbb6cd50b96f4b8081995352d7f30bb1f6245818a17da870fc01",
+      "file": "jamstacks/home-dark.jpg",
+      "bytes": 104150
+    }
+  ]
+}
